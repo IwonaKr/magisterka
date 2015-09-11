@@ -46,7 +46,7 @@ namespace praca_magisterska {
                 return;
             }
             _contentLoaded = true;
-            System.Windows.Application.LoadComponent(this, new System.Uri("/praca_magisterska;component/App.xaml", System.UriKind.Relative));
+            System.Windows.Application.LoadComponent(this, new System.Uri("/Praca%20Magisterska;component/App.xaml", System.UriKind.Relative));
         }
     }
 }

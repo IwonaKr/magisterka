@@ -8,6 +8,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using praca_magisterska.Resources;
+using System.Diagnostics;
 
 namespace praca_magisterska
 {
@@ -17,25 +18,23 @@ namespace praca_magisterska
         public MainPage()
         {
             InitializeComponent();
-
-            // Sample code to localize the ApplicationBar
-            //BuildLocalizedApplicationBar();
+            Debug.WriteLine("Main Page Constructor " + DateTime.Now);
         }
 
-        // Sample code for building a localized ApplicationBar
-        //private void BuildLocalizedApplicationBar()
-        //{
-        //    // Set the page's ApplicationBar to a new instance of ApplicationBar.
-        //    ApplicationBar = new ApplicationBar();
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+            Debug.WriteLine("MainPage OnNavigatedFrom " + DateTime.Now + "  " + e.ToString());
+        }
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            base.OnNavigatingFrom(e);
+            Debug.WriteLine("MainPage OnNavigatingFrom " + DateTime.Now + "  " + e.ToString());
+        }
 
-        //    // Create a new button and set the text value to the localized string from AppResources.
-        //    ApplicationBarIconButton appBarButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.add.rest.png", UriKind.Relative));
-        //    appBarButton.Text = AppResources.AppBarButtonText;
-        //    ApplicationBar.Buttons.Add(appBarButton);
-
-        //    // Create a new menu item with the localized string from AppResources.
-        //    ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
-        //    ApplicationBar.MenuItems.Add(appBarMenuItem);
-        //}
+        private void btn_gps_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/GpsPage.xaml", UriKind.RelativeOrAbsolute));
+        }
     }
 }

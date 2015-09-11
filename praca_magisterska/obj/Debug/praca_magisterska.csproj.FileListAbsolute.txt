@@ -4,16 +4,25 @@ D:\apki\magisterka\praca_magisterska\Bin\Debug\Assets\Tiles\FlipCycleTileMedium.
 D:\apki\magisterka\praca_magisterska\Bin\Debug\Assets\Tiles\FlipCycleTileSmall.png
 D:\apki\magisterka\praca_magisterska\Bin\Debug\Assets\Tiles\IconicTileMediumLarge.png
 D:\apki\magisterka\praca_magisterska\Bin\Debug\Assets\Tiles\IconicTileSmall.png
-D:\apki\magisterka\praca_magisterska\Bin\Debug\praca_magisterska.dll
-D:\apki\magisterka\praca_magisterska\Bin\Debug\praca_magisterska.pdb
 D:\apki\magisterka\praca_magisterska\Bin\Debug\AppManifest.xaml
 D:\apki\magisterka\praca_magisterska\Bin\Debug\Properties\WMAppManifest.xml
 D:\apki\magisterka\praca_magisterska\Bin\Debug\praca_magisterska_Debug_AnyCPU.xap
 D:\apki\magisterka\praca_magisterska\obj\Debug\App.g.cs
 D:\apki\magisterka\praca_magisterska\obj\Debug\MainPage.g.cs
-D:\apki\magisterka\praca_magisterska\obj\Debug\praca_magisterska.g.resources
 D:\apki\magisterka\praca_magisterska\obj\Debug\praca_magisterska.Resources.AppResources.resources
 D:\apki\magisterka\praca_magisterska\obj\Debug\praca_magisterska.csproj.GenerateResource.Cache
-D:\apki\magisterka\praca_magisterska\obj\Debug\praca_magisterska.dll
-D:\apki\magisterka\praca_magisterska\obj\Debug\praca_magisterska.pdb
 D:\apki\magisterka\praca_magisterska\obj\Debug\XapCacheFile.xml
+D:\apki\magisterka\praca_magisterska\obj\Debug\GpsPage.g.cs
+D:\apki\magisterka\praca_magisterska\Bin\Debug\Praca Magisterska.dll
+D:\apki\magisterka\praca_magisterska\Bin\Debug\Praca Magisterska.pdb
+D:\apki\magisterka\praca_magisterska\Bin\Debug\pl-PL\Praca Magisterska.resources.dll
+D:\apki\magisterka\praca_magisterska\Bin\Debug\pl\Praca Magisterska.resources.dll
+D:\apki\magisterka\praca_magisterska\Bin\Debug\Praca Magisterska.dll.CodeAnalysisLog.xml
+D:\apki\magisterka\praca_magisterska\Bin\Debug\Praca Magisterska.dll.lastcodeanalysissucceeded
+D:\apki\magisterka\praca_magisterska\obj\Debug\Praca Magisterska.g.resources
+D:\apki\magisterka\praca_magisterska\obj\Debug\praca_magisterska.Resources.AppResources.pl-PL.resources
+D:\apki\magisterka\praca_magisterska\obj\Debug\praca_magisterska.Resources.AppResources.pl.resources
+D:\apki\magisterka\praca_magisterska\obj\Debug\pl-PL\Praca Magisterska.resources.dll
+D:\apki\magisterka\praca_magisterska\obj\Debug\pl\Praca Magisterska.resources.dll
+D:\apki\magisterka\praca_magisterska\obj\Debug\Praca Magisterska.dll
+D:\apki\magisterka\praca_magisterska\obj\Debug\Praca Magisterska.pdb

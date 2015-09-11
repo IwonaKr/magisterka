@@ -23,6 +23,7 @@ namespace praca_magisterska
         /// </summary>
         public App()
         {
+            Debug.WriteLine("App Constructor " + DateTime.Now);
             // Global handler for uncaught exceptions.
             UnhandledException += Application_UnhandledException;
 
@@ -61,24 +62,28 @@ namespace praca_magisterska
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
+            Debug.WriteLine("Application Launching " + DateTime.Now + " " + sender.ToString() + " " + e.ToString());
         }
 
         // Code to execute when the application is activated (brought to foreground)
         // This code will not execute when the application is first launched
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
+            Debug.WriteLine("Application Activated " + DateTime.Now + " " + sender.ToString() + " " + e.ToString());
         }
 
         // Code to execute when the application is deactivated (sent to background)
         // This code will not execute when the application is closing
         private void Application_Deactivated(object sender, DeactivatedEventArgs e)
         {
+            Debug.WriteLine("Application Deactivated " + DateTime.Now + " " + sender.ToString() + " " + e.ToString());
         }
 
         // Code to execute when the application is closing (eg, user hit Back)
         // This code will not execute when the application is deactivated
         private void Application_Closing(object sender, ClosingEventArgs e)
         {
+            Debug.WriteLine("Application Closing " + DateTime.Now + " " + sender.ToString() + " " + e.ToString());
         }
 
         // Code to execute if a navigation fails
@@ -109,6 +114,7 @@ namespace praca_magisterska
         // Do not add any additional code to this method
         private void InitializePhoneApplication()
         {
+            Debug.WriteLine("Initialize Phone Application " + DateTime.Now);
             if (phoneApplicationInitialized)
                 return;
 
@@ -130,6 +136,7 @@ namespace praca_magisterska
         // Do not add any additional code to this method
         private void CompleteInitializePhoneApplication(object sender, NavigationEventArgs e)
         {
+            Debug.WriteLine("Complete Initialize Application " + DateTime.Now + " " + sender.ToString() + " " + e.ToString());
             // Set the root visual to allow the application to render
             if (RootVisual != RootFrame)
                 RootVisual = RootFrame;
@@ -148,6 +155,7 @@ namespace praca_magisterska
 
         private void ClearBackStackAfterReset(object sender, NavigationEventArgs e)
         {
+            Debug.WriteLine("Clear Back Stack After Reset " + DateTime.Now + " " + sender.ToString() + " " + e.ToString());
             // Unregister the event so it doesn't get called again
             RootFrame.Navigated -= ClearBackStackAfterReset;
 
