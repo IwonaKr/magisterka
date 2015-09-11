@@ -10,6 +10,7 @@ using Microsoft.Phone.Shell;
 using Windows.Devices.Geolocation;
 using System.Diagnostics;
 using Windows.System;
+using System.Threading.Tasks;
 
 namespace praca_magisterska
 {
@@ -20,27 +21,29 @@ namespace praca_magisterska
         {
             InitializeComponent();
             geolocator = new Geolocator();
-        }
-        private async void GetCoordinatesButton_Click(object sender, RoutedEventArgs e)
-        {
             geolocator.DesiredAccuracyInMeters = 50;
+            geolocator.StatusChanged += geolocator_StatusChanged;
+            geolocator.PositionChanged += geolocator_PositionChanged;
+        }
+
+        private void geolocator_PositionChanged(Geolocator sender, PositionChangedEventArgs args)
+        {
+            Debug.WriteLine(sender + " " + args.Position.Coordinate.Speed.ToString());
+            this.setGeoposition();
+        }
+
+        private void geolocator_StatusChanged(Geolocator sender, StatusChangedEventArgs args)
+        {
+            Debug.WriteLine(sender + " " + args);
+        }
+        private void GetCoordinatesButton_Click(object sender, RoutedEventArgs e)
+        {
 
             try
             {
-                loadingBar.IsEnabled = true;
-                loadingBar.Visibility = Visibility.Visible;
-                latitudeTextBlock.Visibility = Visibility.Collapsed;
-                longitudeTextBlock.Visibility = Visibility.Collapsed;
-                Geoposition geoposition = await geolocator.GetGeopositionAsync(
-                    maximumAge: TimeSpan.FromSeconds(5),
-                    timeout: TimeSpan.FromSeconds(10));
+                
+                this.setGeoposition();
 
-                latitudeTextBlock.Text = geoposition.Coordinate.Latitude.ToString();
-                longitudeTextBlock.Text = geoposition.Coordinate.Longitude.ToString();
-                latitudeTextBlock.Visibility = Visibility.Visible;
-                longitudeTextBlock.Visibility = Visibility.Visible;
-                loadingBar.IsEnabled = false;
-                loadingBar.Visibility = Visibility.Collapsed;
             }
             catch (Exception ex)
             {
@@ -57,6 +60,30 @@ namespace praca_magisterska
 
                 }
             }
+        }
+
+        private async void setGeoposition()
+        {
+
+            Geoposition geoposition = await geolocator.GetGeopositionAsync(
+                maximumAge: TimeSpan.FromSeconds(5),
+                timeout: TimeSpan.FromSeconds(10));
+            Deployment.Current.Dispatcher.BeginInvoke(() =>
+                {
+                    this.loadingBar.IsEnabled = true;
+                    this.loadingBar.Visibility = Visibility.Visible;
+                    this.latitudeTextBlock.Visibility = Visibility.Collapsed;
+                    this.longitudeTextBlock.Visibility = Visibility.Collapsed;
+
+
+                    this.latitudeTextBlock.Text = geoposition.Coordinate.Latitude.ToString();
+                    this.longitudeTextBlock.Text = geoposition.Coordinate.Longitude.ToString();
+                    this.altitudeTextBlock.Text = geoposition.Coordinate.Altitude.ToString();
+                    this.latitudeTextBlock.Visibility = Visibility.Visible;
+                    this.longitudeTextBlock.Visibility = Visibility.Visible;
+                    this.loadingBar.IsEnabled = false;
+                    this.loadingBar.Visibility = Visibility.Collapsed;
+                });
         }
     }
 }

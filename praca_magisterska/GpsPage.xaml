@@ -29,8 +29,12 @@
         <!--ContentPanel - place additional content here-->
         <StackPanel x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <Button Name="coordinatesButton" Content="pobierz lokacje gps" Width="380" VerticalAlignment="Top" Click="GetCoordinatesButton_Click"></Button>
-            <TextBlock Name="latitudeTextBlock" TextWrapping="Wrap" Margin="10,0" VerticalAlignment="Top" FontSize="36" Text="tutaj długość" Visibility="Collapsed"></TextBlock>
-            <TextBlock Name="longitudeTextBlock"  TextWrapping="Wrap" Margin="10,0" VerticalAlignment="Top" FontSize="36" Text="tutaj szerokość" Visibility="Collapsed"></TextBlock>
+            <TextBlock Text="Szerokość geograficzna:"></TextBlock>
+            <TextBlock Name="latitudeTextBlock" TextWrapping="Wrap" Margin="10,0" VerticalAlignment="Top" FontSize="36" Visibility="Collapsed"></TextBlock>
+            <TextBlock Text="Długość geograficzna:"></TextBlock>
+            <TextBlock Name="longitudeTextBlock"  TextWrapping="Wrap" Margin="10,0" VerticalAlignment="Top" FontSize="36" Visibility="Collapsed"></TextBlock>
+            <TextBlock Text="Wysokość:"></TextBlock>
+            <TextBlock Name="altitudeTextBlock"  TextWrapping="Wrap" Margin="10,0" VerticalAlignment="Top" FontSize="36" Visibility="Collapsed"></TextBlock>
 
             <ProgressBar x:Name="loadingBar" Visibility="Collapsed" IsEnabled="False" IsIndeterminate="true" Height="4" HorizontalAlignment="Stretch"/>
         </StackPanel>
