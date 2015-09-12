@@ -31,7 +31,7 @@
             <Button x:Name="btn_gps" Content="GPS" Click="btn_gps_Click"/>
             <Button x:Name="btn_mail" Content="WIADOMOŚCI E-MAIL"/>
             <Button x:Name="btn_bluetooth" Content="BLUETOOTH"/>
-            <Button x:Name="btn_calls" Content="POŁACZENIA"/>
+            <Button x:Name="btn_calls" Content="POŁACZENIA" Click="btn_calls_Click"/>
             <Button x:Name="btn_sms" Content="WIADOMOŚCI SMS"/>
             <Button x:Name="btn_accelerometer" Content="AKCELEROMETR"/>
             <Button x:Name="btn_database" Content="BAZA DANYCH"/>

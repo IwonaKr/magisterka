@@ -36,5 +36,10 @@ namespace praca_magisterska
         {
             NavigationService.Navigate(new Uri("/GpsPage.xaml", UriKind.RelativeOrAbsolute));
         }
+
+        private void btn_calls_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/CallsPage.xaml", UriKind.RelativeOrAbsolute));
+        }
     }
 }

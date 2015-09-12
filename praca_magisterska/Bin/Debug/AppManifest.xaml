@@ -1,7 +1,0 @@
-﻿<Deployment xmlns="http://schemas.microsoft.com/client/2007/deployment" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" EntryPointAssembly="Praca Magisterska" EntryPointType="praca_magisterska.App" RuntimeVersion="4.7.50308.0">
-  <Deployment.Parts>
-    <AssemblyPart x:Name="Praca Magisterska" Source="Praca Magisterska.dll" />
-    <AssemblyPart Source="pl-PL/Praca Magisterska.resources.dll" />
-    <AssemblyPart Source="pl/Praca Magisterska.resources.dll" />
-  </Deployment.Parts>
-</Deployment>
