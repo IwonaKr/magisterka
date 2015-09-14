@@ -33,9 +33,7 @@
             <TextBlock Name="latitudeTextBlock" TextWrapping="Wrap" Margin="10,0" VerticalAlignment="Top" FontSize="36" Visibility="Collapsed"></TextBlock>
             <TextBlock Text="Długość geograficzna:"></TextBlock>
             <TextBlock Name="longitudeTextBlock"  TextWrapping="Wrap" Margin="10,0" VerticalAlignment="Top" FontSize="36" Visibility="Collapsed"></TextBlock>
-            <TextBlock Text="Wysokość:"></TextBlock>
-            <TextBlock Name="altitudeTextBlock"  TextWrapping="Wrap" Margin="10,0" VerticalAlignment="Top" FontSize="36" Visibility="Collapsed"></TextBlock>
-
+          
             <ProgressBar x:Name="loadingBar" Visibility="Collapsed" IsEnabled="False" IsIndeterminate="true" Height="4" HorizontalAlignment="Stretch"/>
         </StackPanel>
     </Grid>

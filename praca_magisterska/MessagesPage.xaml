@@ -32,7 +32,7 @@
             <TextBox Name="inputPhoneNumber" TextWrapping="Wrap" InputScope="Number" AcceptsReturn="True"></TextBox>
             <TextBlock Text="Wpisz treść wiadomości:"></TextBlock>
             <TextBox Name="inputMessage" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="254"></TextBox>
-            
+            <Button Name="btn_sendSms" Content="Wyślij sms" Click="btn_sendSms_Click"></Button>
         </StackPanel>
     </Grid>
 

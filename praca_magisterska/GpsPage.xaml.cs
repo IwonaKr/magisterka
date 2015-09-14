@@ -78,7 +78,6 @@ namespace praca_magisterska
 
                     this.latitudeTextBlock.Text = geoposition.Coordinate.Latitude.ToString();
                     this.longitudeTextBlock.Text = geoposition.Coordinate.Longitude.ToString();
-                    this.altitudeTextBlock.Text = geoposition.Coordinate.Altitude.ToString();
                     this.latitudeTextBlock.Visibility = Visibility.Visible;
                     this.longitudeTextBlock.Visibility = Visibility.Visible;
                     this.loadingBar.IsEnabled = false;
