@@ -241,3 +241,8 @@ $RECYCLE.BIN/
 
 /praca_magisterska/Bin
 obj
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.suo

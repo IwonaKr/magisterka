@@ -41,5 +41,10 @@ namespace praca_magisterska
         {
             NavigationService.Navigate(new Uri("/CallsPage.xaml", UriKind.RelativeOrAbsolute));
         }
+
+        private void btn_sms_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/MessagesPage.xaml", UriKind.RelativeOrAbsolute));
+        }
     }
 }
