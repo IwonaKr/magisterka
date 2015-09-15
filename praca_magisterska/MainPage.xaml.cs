@@ -46,5 +46,15 @@ namespace praca_magisterska
         {
             NavigationService.Navigate(new Uri("/MessagesPage.xaml", UriKind.RelativeOrAbsolute));
         }
+
+        private void btn_bluetooth_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/BluetoothPage.xaml", UriKind.RelativeOrAbsolute));
+        }
+
+        private void btn_database_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
