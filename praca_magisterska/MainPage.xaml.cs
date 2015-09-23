@@ -54,7 +54,12 @@ namespace praca_magisterska
 
         private void btn_database_Click(object sender, RoutedEventArgs e)
         {
+            NavigationService.Navigate(new Uri("/DatabasePage.xaml", UriKind.RelativeOrAbsolute));
+        }
 
+        private void btn_internet_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/NetworkPage.xaml", UriKind.RelativeOrAbsolute));
         }
     }
 }

@@ -245,4 +245,6 @@ obj
 *.user
 *.userosscache
 *.sln.docstates
-*.suo
+/praca_magisterska/*.user
+praca_magisterska/praca_magisterska.v12.suo
+*.user

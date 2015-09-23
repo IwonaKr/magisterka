@@ -35,7 +35,7 @@
             <Button x:Name="btn_sms" Content="WIADOMOŚCI SMS" Click="btn_sms_Click"/>
             <Button x:Name="btn_accelerometer" Content="AKCELEROMETR"/>
             <Button x:Name="btn_database" Content="BAZA DANYCH" Click="btn_database_Click"/>
-            <Button x:Name="btn_internet" Content="POŁĄCZENIE INTERNETOWE"/>
+            <Button x:Name="btn_internet" Content="POŁĄCZENIE INTERNETOWE" Click="btn_internet_Click"/>
 
         </StackPanel>
 
