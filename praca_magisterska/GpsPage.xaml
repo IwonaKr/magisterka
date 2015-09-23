@@ -6,6 +6,7 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Controls="clr-namespace:Microsoft.Phone.Maps.Controls;assembly=Microsoft.Phone.Maps"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -35,6 +36,8 @@
             <TextBlock Name="longitudeTextBlock"  TextWrapping="Wrap" Margin="10,0" VerticalAlignment="Top" FontSize="36" Visibility="Collapsed"></TextBlock>
           
             <ProgressBar x:Name="loadingBar" Visibility="Collapsed" IsEnabled="False" IsIndeterminate="true" Height="4" HorizontalAlignment="Stretch"/>
+            <Controls:Map Name="mapControl" Height="500" Loaded="mapControl_Loaded"/>
+            
         </StackPanel>
     </Grid>
 

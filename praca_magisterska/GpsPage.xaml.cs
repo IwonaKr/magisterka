@@ -11,6 +11,10 @@ using Windows.Devices.Geolocation;
 using System.Diagnostics;
 using Windows.System;
 using System.Threading.Tasks;
+using Microsoft.Phone.Maps.Controls;
+using System.Device.Location;
+using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace praca_magisterska
 {
@@ -22,7 +26,7 @@ namespace praca_magisterska
             InitializeComponent();
             geolocator = new Geolocator();
             geolocator.DesiredAccuracyInMeters = 50;
-            geolocator.StatusChanged += geolocator_StatusChanged;
+
             geolocator.PositionChanged += geolocator_PositionChanged;
         }
 
@@ -32,18 +36,12 @@ namespace praca_magisterska
             this.setGeoposition();
         }
 
-        private void geolocator_StatusChanged(Geolocator sender, StatusChangedEventArgs args)
-        {
-            Debug.WriteLine(sender + " " + args);
-        }
         private void GetCoordinatesButton_Click(object sender, RoutedEventArgs e)
         {
 
             try
             {
-                
                 this.setGeoposition();
-
             }
             catch (Exception ex)
             {
@@ -68,6 +66,11 @@ namespace praca_magisterska
             Geoposition geoposition = await geolocator.GetGeopositionAsync(
                 maximumAge: TimeSpan.FromSeconds(5),
                 timeout: TimeSpan.FromSeconds(10));
+            GeoCoordinate geoCoordinate = new GeoCoordinate();
+            geoCoordinate.Latitude = Convert.ToDouble(geoposition.Coordinate.Latitude);
+            geoCoordinate.Longitude = Convert.ToDouble(geoposition.Coordinate.Longitude);
+            MapOverlay myLocationOverlay;
+            MapLayer mapLayer;
             Deployment.Current.Dispatcher.BeginInvoke(() =>
                 {
                     this.loadingBar.IsEnabled = true;
@@ -82,7 +85,41 @@ namespace praca_magisterska
                     this.longitudeTextBlock.Visibility = Visibility.Visible;
                     this.loadingBar.IsEnabled = false;
                     this.loadingBar.Visibility = Visibility.Collapsed;
+                    this.mapControl.Center = geoCoordinate;
+                    this.mapControl.ZoomLevel = 15;
+                    Ellipse pushpin = new Ellipse();
+                    pushpin.Fill = new SolidColorBrush(Colors.Black);
+                    pushpin.Height = 15;
+                    pushpin.Width = 15;
+                    if (this.mapControl.Layers.Count > 0)
+                    {
+                        this.mapControl.Layers.RemoveAt(0);
+                    }
+                    myLocationOverlay = new MapOverlay();
+                    myLocationOverlay.Content = pushpin;
+                    myLocationOverlay.PositionOrigin = new Point(0.5, 0.5);
+                    myLocationOverlay.GeoCoordinate = geoCoordinate;
+
+                    mapLayer = new MapLayer();
+                    mapLayer.Add(myLocationOverlay);
+
+                    this.mapControl.Layers.Add(mapLayer);
                 });
+        }
+
+        public Ellipse createEllipse()
+        {
+            Ellipse pushpin = new Ellipse();
+            pushpin.Fill = new SolidColorBrush(Colors.Black);
+            pushpin.Height = 15;
+            pushpin.Width = 15;
+            return pushpin;
+        }
+
+        private void mapControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Phone.Maps.MapsSettings.ApplicationContext.ApplicationId = "f6102001-5399-4ff5-9e26-282085be9369";
+            Microsoft.Phone.Maps.MapsSettings.ApplicationContext.AuthenticationToken = "Zq0iVJNoEGzSAqVg6oW7kA";
         }
     }
 }
