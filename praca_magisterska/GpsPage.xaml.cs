@@ -21,99 +21,75 @@ namespace praca_magisterska
     public partial class GpsPage : PhoneApplicationPage
     {
         Geolocator geolocator;
+        MapOverlay mapOverlay;
+        MapLayer mapLayer;
+        Ellipse pushpin;
         public GpsPage()
         {
             InitializeComponent();
             geolocator = new Geolocator();
+            if (geolocator.LocationStatus.Equals(PositionStatus.Disabled))
+            {
+                var result = MessageBox.Show("Usługa lokalizacji jest wyłączona. Włączyć GPS?", "GPS wyłączony", MessageBoxButton.OKCancel);
+                if (result == MessageBoxResult.OK)
+                    launchLocationSettings();
+            }
             geolocator.DesiredAccuracyInMeters = 50;
+            geolocator.MovementThreshold = 5;
 
             geolocator.PositionChanged += geolocator_PositionChanged;
+            geolocator.StatusChanged += geolocator_StatusChanged;
+
+        }
+
+        private async static void launchLocationSettings()
+        {
+            bool x = await Launcher.LaunchUriAsync(new Uri("ms-settings-location:"));
+        }
+
+        void geolocator_StatusChanged(Geolocator sender, StatusChangedEventArgs args)
+        {
+            if (args.Status.Equals(PositionStatus.Ready))
+            {
+               
+            }
         }
 
         private void geolocator_PositionChanged(Geolocator sender, PositionChangedEventArgs args)
         {
-            Debug.WriteLine(sender + " " + args.Position.Coordinate.Speed.ToString());
-            this.setGeoposition();
-        }
 
-        private void GetCoordinatesButton_Click(object sender, RoutedEventArgs e)
-        {
-
-            try
-            {
-                this.setGeoposition();
-            }
-            catch (Exception ex)
-            {
-                MessageBoxResult result;
-                if ((uint)ex.HResult == 0x80004004)
-                {
-                    result = MessageBox.Show("Usługa lokalizacji jest wyłączona. Włączyć GPS?", "GPS wyłączony", MessageBoxButton.OKCancel);
-                    if (result == MessageBoxResult.OK)
-                        Launcher.LaunchUriAsync(new Uri("ms-settings-location:"));
-                }
-                else
-                {
-                    result = MessageBox.Show("Nastąpił nieoczekiwany błąd podczas ustalania lokalizacji GPS", "Błąd", MessageBoxButton.OK);
-
-                }
-            }
-        }
-
-        private async void setGeoposition()
-        {
-
-            Geoposition geoposition = await geolocator.GetGeopositionAsync(
-                maximumAge: TimeSpan.FromSeconds(5),
-                timeout: TimeSpan.FromSeconds(10));
-            GeoCoordinate geoCoordinate = new GeoCoordinate();
-            geoCoordinate.Latitude = Convert.ToDouble(geoposition.Coordinate.Latitude);
-            geoCoordinate.Longitude = Convert.ToDouble(geoposition.Coordinate.Longitude);
-            MapOverlay myLocationOverlay;
-            MapLayer mapLayer;
             Deployment.Current.Dispatcher.BeginInvoke(() =>
                 {
-                    this.loadingBar.IsEnabled = true;
-                    this.loadingBar.Visibility = Visibility.Visible;
-                    this.latitudeTextBlock.Visibility = Visibility.Collapsed;
-                    this.longitudeTextBlock.Visibility = Visibility.Collapsed;
-
-
-                    this.latitudeTextBlock.Text = geoposition.Coordinate.Latitude.ToString();
-                    this.longitudeTextBlock.Text = geoposition.Coordinate.Longitude.ToString();
-                    this.latitudeTextBlock.Visibility = Visibility.Visible;
-                    this.longitudeTextBlock.Visibility = Visibility.Visible;
-                    this.loadingBar.IsEnabled = false;
-                    this.loadingBar.Visibility = Visibility.Collapsed;
+                    this.latitudeTextBlock.Text = args.Position.Coordinate.Latitude.ToString();
+                    this.longitudeTextBlock.Text = args.Position.Coordinate.Longitude.ToString();
+                    GeoCoordinate geoCoordinate = new GeoCoordinate();
+                    geoCoordinate.Latitude = Convert.ToDouble(args.Position.Coordinate.Latitude);
+                    geoCoordinate.Longitude = Convert.ToDouble(args.Position.Coordinate.Longitude);
                     this.mapControl.Center = geoCoordinate;
                     this.mapControl.ZoomLevel = 15;
-                    Ellipse pushpin = new Ellipse();
-                    pushpin.Fill = new SolidColorBrush(Colors.Black);
-                    pushpin.Height = 15;
-                    pushpin.Width = 15;
-                    if (this.mapControl.Layers.Count > 0)
-                    {
-                        this.mapControl.Layers.RemoveAt(0);
-                    }
-                    myLocationOverlay = new MapOverlay();
-                    myLocationOverlay.Content = pushpin;
-                    myLocationOverlay.PositionOrigin = new Point(0.5, 0.5);
-                    myLocationOverlay.GeoCoordinate = geoCoordinate;
-
-                    mapLayer = new MapLayer();
-                    mapLayer.Add(myLocationOverlay);
-
-                    this.mapControl.Layers.Add(mapLayer);
+                    addNewPoint(geoCoordinate, out mapOverlay, out mapLayer, out pushpin);
                 });
         }
 
-        public Ellipse createEllipse()
+        private void addNewPoint(GeoCoordinate geoCoordinate, out MapOverlay myLocationOverlay, out MapLayer mapLayer, out Ellipse pushpin)
         {
-            Ellipse pushpin = new Ellipse();
+            pushpin = new Ellipse();
             pushpin.Fill = new SolidColorBrush(Colors.Black);
             pushpin.Height = 15;
             pushpin.Width = 15;
-            return pushpin;
+            if (this.mapControl.Layers.Count > 0)
+            {
+                this.mapControl.Layers.RemoveAt(0);
+            }
+            myLocationOverlay = new MapOverlay();
+            myLocationOverlay.Content = pushpin;
+            myLocationOverlay.PositionOrigin = new Point(0.5, 0.5);
+            myLocationOverlay.GeoCoordinate = geoCoordinate;
+
+            mapLayer = new MapLayer();
+            mapLayer.Add(myLocationOverlay);
+
+            this.mapControl.Layers.Add(mapLayer);
         }
 
         private void mapControl_Loaded(object sender, RoutedEventArgs e)
